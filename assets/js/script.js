@@ -16,45 +16,6 @@ sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); }
 
 
 
-// testimonials variables
-const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
-const modalContainer = document.querySelector("[data-modal-container]");
-const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
-const overlay = document.querySelector("[data-overlay]");
-
-// modal variable
-const modalImg = document.querySelector("[data-modal-img]");
-const modalTitle = document.querySelector("[data-modal-title]");
-const modalText = document.querySelector("[data-modal-text]");
-
-// modal toggle function
-const testimonialsModalFunc = function () {
-  modalContainer.classList.toggle("active");
-  overlay.classList.toggle("active");
-}
-
-// add click event to all modal items
-for (let i = 0; i < testimonialsItem.length; i++) {
-
-  testimonialsItem[i].addEventListener("click", function () {
-
-    modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
-    modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
-    modalTitle.innerHTML = this.querySelector("[data-testimonials-title]").innerHTML;
-    modalText.innerHTML = this.querySelector("[data-testimonials-text]").innerHTML;
-
-    testimonialsModalFunc();
-
-  });
-
-}
-
-// add click event to modal close button
-modalCloseBtn.addEventListener("click", testimonialsModalFunc);
-overlay.addEventListener("click", testimonialsModalFunc);
-
-
-
 // custom select variables
 const select = document.querySelector("[data-select]");
 const selectItems = document.querySelectorAll("[data-select-item]");
@@ -67,10 +28,32 @@ select.addEventListener("click", function () { elementToggleFunc(this); });
 for (let i = 0; i < selectItems.length; i++) {
   selectItems[i].addEventListener("click", function () {
 
-    let selectedValue = this.innerText.toLowerCase();
+    let selectedValue = (this.dataset.filterValue || this.innerText)
+      .toLowerCase()
+      .trim();
+
+    /* Update the visible label in the dropdown so the user always sees the
+       * currently-selected category. */
     selectValue.innerText = this.innerText;
+
     elementToggleFunc(select);
     filterFunc(selectedValue);
+
+    /* Sync the desktop filter buttons with the dropdown selection so the
+       * highlighted (active) state is always accurate, regardless of which
+       * control the user interacts with. */
+    if (lastClickedBtn) {
+      lastClickedBtn.classList.remove("active");
+    }
+
+    const correspondingBtn = Array.from(filterBtn).find(
+      (btn) => ((btn.dataset.filterValue || btn.innerText).toLowerCase().trim() === selectedValue)
+    );
+
+    if (correspondingBtn) {
+      correspondingBtn.classList.add("active");
+      lastClickedBtn = correspondingBtn;
+    }
 
   });
 }
@@ -101,7 +84,7 @@ for (let i = 0; i < filterBtn.length; i++) {
 
   filterBtn[i].addEventListener("click", function () {
 
-    let selectedValue = this.innerText.toLowerCase();
+    let selectedValue = (this.dataset.filterValue || this.innerText).toLowerCase().trim();
     selectValue.innerText = this.innerText;
     filterFunc(selectedValue);
 
@@ -156,4 +139,18 @@ for (let i = 0; i < navigationLinks.length; i++) {
     }
 
   });
+}
+
+// Fullscreen video function
+function openFullscreen(video) {
+  if (video.requestFullscreen) {
+    video.requestFullscreen();
+  } else if (video.webkitRequestFullscreen) { /* Safari */
+    video.webkitRequestFullscreen();
+  } else if (video.msRequestFullscreen) { /* IE11 */
+    video.msRequestFullscreen();
+  }
+  
+  // Play video when entering fullscreen
+  video.play();
 }

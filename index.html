@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>vCard - Personal Portfolio</title>
+  <title>Tho Le | PhD Researcher</title>
 
   <!--
     - favicon
@@ -23,6 +23,206 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    .project-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .project-showcase .project-item {
+      display:flex;
+      gap:20px;
+      padding:20px;
+    }
+
+    .project-img-box {
+      flex: 0 0 200px;
+      height: 150px;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .project-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-content {
+      flex: 1;
+    }
+
+    .project-link {
+      display: inline-block;
+      margin-top: 15px;
+      color: var(--orange-yellow-crayola);
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .project-item {
+        flex-direction: column;
+      }
+      
+      .project-img-box {
+        flex: 0 0 auto;
+        width: 100%;
+      }
+    }
+
+    /* Research section styles */
+    .research-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    
+    .research-link:hover .project-title {
+      color: var(--orange-yellow-crayola);
+    }
+    
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    
+    .project-list .project-item {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .project-list .project-item .content-card {
+      width: 100%;
+      margin: 0;
+    }
+    
+    .project-list .project-img-box {
+      position: relative;
+    }
+    
+    .project-list .project-item-icon-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--orange-yellow-crayola);
+      color: var(--white);
+      font-size: 20px;
+      padding: 18px;
+      border-radius: 12px;
+      opacity: 0;
+      transition: 0.25s ease;
+      z-index: 1;
+    }
+    
+    .project-list .project-item:hover .project-item-icon-box {
+      opacity: 1;
+    }
+    
+    .project-list .project-text {
+      color: var(--light-gray);
+      margin-bottom: 5px;
+    }
+    
+    /* Fix for research cards */
+    .research-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 20px;
+    }
+    
+    .research-card .project-img-box {
+      flex: 0 0 200px;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    
+    .research-card .project-content {
+      flex: 1;
+    }
+    
+    @media (max-width: 768px) {
+      .research-card {
+        flex-direction: column;
+      }
+      
+      .research-card .project-img-box {
+        flex: 0 0 auto;
+        width: 100%;
+      }
+    }
+
+    /* Custom compact skills styling */
+    .skills-list { 
+      padding: 15px !important; 
+    }
+
+    .skills-item:not(:last-child) { 
+      margin-bottom: 10px !important; 
+    }
+
+    .skill .title-wrapper {
+      margin-bottom: 5px !important;
+    }
+
+    .skill-progress-bg {
+      height: 6px !important;
+    }
+
+    .skills-title { 
+      margin-bottom: 15px !important; 
+    }
+
+    /* Reduce spacing in skills section */
+    .skill {
+      margin-bottom: 25px !important;
+    }
+
+    /* Styling for Technical Experience section */
+    .tech-category {
+      margin-bottom: 20px;
+    }
+
+    .tech-category:last-child {
+      margin-bottom: 0;
+    }
+
+    .category-title {
+      color: var(--white-2);
+      margin-bottom: 10px;
+      font-size: var(--fs-5);
+      font-weight: var(--fw-500);
+    }
+
+    .tech-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .tech-item {
+      color: var(--light-gray);
+      font-size: var(--fs-6);
+      font-weight: var(--fw-300);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .tech-item strong {
+      color: var(--white-2);
+      font-weight: var(--fw-500);
+    }
+  </style>
 </head>
 
 <body>
@@ -42,13 +242,15 @@
       <div class="sidebar-info">
 
         <figure class="avatar-box">
-          <img src="./assets/images/my-avatar.png" alt="Richard hanrick" width="80">
+          <img src="./assets/images/my-avatar.png" alt="Tho Le" width="80" style="border-radius: 25%;">
         </figure>
 
         <div class="info-content">
-          <h1 class="name" title="Richard hanrick">Richard hanrick</h1>
+          <h1 class="name" title="Tho Le">Tho Le</h1>
 
-          <p class="title">Web developer</p>
+          <p class="title">Ph.D. Researcher</p>
+          <p class="title">Computer Vision & Robotics</p>
+          <p class="title">Monash University, Australia</p>
         </div>
 
         <button class="info_more-btn" data-sidebar-btn>
@@ -74,7 +276,7 @@
             <div class="contact-info">
               <p class="contact-title">Email</p>
 
-              <a href="mailto:richard@example.com" class="contact-link">richard@example.com</a>
+              <a href="mailto:duy.tho.le@monash.edu" class="contact-link">ldtho.97@gmail.com</a>
             </div>
 
           </li>
@@ -88,7 +290,7 @@
             <div class="contact-info">
               <p class="contact-title">Phone</p>
 
-              <a href="tel:+12133522795" class="contact-link">+1 (213) 352-2795</a>
+              <a href="tel:+61412345678" class="contact-link">+61 423169701</a>
             </div>
 
           </li>
@@ -102,7 +304,7 @@
             <div class="contact-info">
               <p class="contact-title">Birthday</p>
 
-              <time datetime="1982-06-23">June 23, 1982</time>
+              <time datetime="1994-06-15">October 1997</time>
             </div>
 
           </li>
@@ -116,7 +318,7 @@
             <div class="contact-info">
               <p class="contact-title">Location</p>
 
-              <address>Sacramento, California, USA</address>
+              <address>Melbourne, Australia</address>
             </div>
 
           </li>
@@ -128,20 +330,20 @@
         <ul class="social-list">
 
           <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
+            <a href="https://scholar.google.com/citations?user=ufvAmAIAAAAJ" class="social-link" target="_blank">
+              <ion-icon name="logo-google"></ion-icon>
             </a>
           </li>
 
           <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
+            <a href="https://www.linkedin.com/in/tho-le-7745bb106/" class="social-link" target="_blank">
+              <ion-icon name="logo-linkedin"></ion-icon>
             </a>
           </li>
 
           <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
+            <a href="https://github.com/ldtho" class="social-link" target="_blank">
+              <ion-icon name="logo-github"></ion-icon>
             </a>
           </li>
 
@@ -178,15 +380,11 @@
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Portfolio</button>
+            <button class="navbar-link" data-nav-link>Researches</button>
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Blog</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Contact</button>
+            <button class="navbar-link" data-nav-link>Projects</button>
           </li>
 
         </ul>
@@ -209,17 +407,15 @@
 
         <section class="about-text">
           <p>
-            I'm Creative Director and UI/UX Designer from Sydney, Australia, working in web development and print media.
-            I enjoy
-            turning complex problems into simple, beautiful and intuitive designs.
+            I am a Ph.D. researcher in Computer Vision and Robotics at Monash University, Australia, working under the supervision of Associate Professor Hamid Rezatofighi and Professor Jianfei Cai. My research focuses on the intersection of computer vision, deep learning, and robotics, with particular expertise in multi-modal low-level perception tasks including object detection, tracking, and trajectory prediction for autonomous systems.
           </p>
 
           <p>
-            My job is to build your website so that it is functional and user-friendly but at the same time attractive.
-            Moreover, I
-            add personal touch to your product and make sure that is eye-catching and easy to use. My aim is to bring
-            across your
-            message and identity in the most creative way. I created web design for many famous brand companies.
+            With a strong publication record at top-tier venues such as CVPR, ECCV, and RA-L, I am passionate about developing cutting-edge algorithms that bridge the gap between theoretical research and real-world applications. My work spans from designing novel deep learning architectures using Transformers and Diffusion models to creating large-scale datasets that advance the field of robotic perception in complex, crowded environments.
+          </p>
+
+          <p>
+            Beyond research, I actively contribute to the academic community as a reviewer for premier computer vision conferences and journals (CVPR, ECCV, ICRA, TPAMI), while also applying my expertise in industry through AI engineering roles. I believe in open science and reproducible research, consistently releasing code and datasets to benefit the broader research community.
           </p>
         </section>
 
@@ -230,22 +426,21 @@
 
         <section class="service">
 
-          <h3 class="h3 service-title">What i'm doing</h3>
+          <h3 class="h3 service-title">What I'm working on</h3>
 
           <ul class="service-list">
 
             <li class="service-item">
 
               <div class="service-icon-box">
-                <img src="./assets/images/icon-design.svg
-                " alt="design icon" width="40">
+                <img src="./assets/images/icon-dev.svg" alt="research icon" width="40">
               </div>
 
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">Web design</h4>
+                <h4 class="h4 service-item-title">Advanced Perception Research</h4>
 
                 <p class="service-item-text">
-                  The most modern and high-quality design made at a professional level.
+                  Developing state-of-the-art deep learning algorithms using Transformers, Diffusion models, and novel geometric approaches for multi-modal perception tasks including 3D object detection, tracking, and trajectory prediction in autonomous robotic systems.
                 </p>
               </div>
 
@@ -254,248 +449,17 @@
             <li class="service-item">
 
               <div class="service-icon-box">
-                <img src="./assets/images/icon-dev.svg" alt="Web development icon" width="40">
+                <img src="./assets/images/icon-design.svg" alt="academic icon" width="40">
               </div>
 
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">Web development</h4>
+                <h4 class="h4 service-item-title">Academic Leadership & Innovation</h4>
 
                 <p class="service-item-text">
-                  High-quality development of sites at the professional level.
+                  Publishing first-author papers at premier venues (CVPR, ECCV, RA-L), creating open-source datasets and benchmarks, mentoring students, and serving as a reviewer for top-tier computer vision conferences and journals while fostering collaborative research initiatives.
                 </p>
               </div>
 
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-app.svg" alt="mobile app icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Mobile apps</h4>
-
-                <p class="service-item-text">
-                  Professional development of applications for iOS and Android.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-photo.svg" alt="camera icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Photography</h4>
-
-                <p class="service-item-text">
-                  I make high-quality photos of any category at a professional level.
-                </p>
-              </div>
-
-            </li>
-
-          </ul>
-
-        </section>
-
-
-        <!--
-          - testimonials
-        -->
-
-        <section class="testimonials">
-
-          <h3 class="h3 testimonials-title">Testimonials</h3>
-
-          <ul class="testimonials-list has-scrollbar">
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Daniel lewis</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-2.png" alt="Jessica miller" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Jessica miller</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-3.png" alt="Emily evans" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Emily evans</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-4.png" alt="Henry william" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Henry william</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-          </ul>
-
-        </section>
-
-
-        <!--
-          - testimonials modal
-        -->
-
-        <div class="modal-container" data-modal-container>
-
-          <div class="overlay" data-overlay></div>
-
-          <section class="testimonials-modal">
-
-            <button class="modal-close-btn" data-modal-close-btn>
-              <ion-icon name="close-outline"></ion-icon>
-            </button>
-
-            <div class="modal-img-wrapper">
-              <figure class="modal-avatar-box">
-                <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img>
-              </figure>
-
-              <img src="./assets/images/icon-quote.svg" alt="quote icon">
-            </div>
-
-            <div class="modal-content">
-
-              <h4 class="h3 modal-title" data-modal-title>Daniel lewis</h4>
-
-              <time datetime="2021-06-14">14 June, 2021</time>
-
-              <div data-modal-text>
-                <p>
-                  Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                  lot of experience
-                  and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                  consectetur adipiscing
-                  elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                </p>
-              </div>
-
-            </div>
-
-          </section>
-
-        </div>
-
-
-        <!--
-          - clients
-        -->
-
-        <section class="clients">
-
-          <h3 class="h3 clients-title">Clients</h3>
-
-          <ul class="clients-list has-scrollbar">
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-1-color.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-2-color.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-3-color.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-4-color.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-5-color.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-6-color.png" alt="client logo">
-              </a>
             </li>
 
           </ul>
@@ -532,41 +496,37 @@
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">University school of the arts</h4>
+              <h4 class="h4 timeline-item-title">Ph.D. in Computer Vision & Robotics, Monash University</h4>
 
-              <span>2007 — 2008</span>
+              <span>2022 — Present (Expected 12/2025)</span>
 
               <p class="timeline-text">
-                Nemo enims ipsam voluptatem, blanditiis praesentium voluptum delenit atque corrupti, quos dolores et
-                quas molestias
-                exceptur.
+                Researching Multi-modal Low-level Perception Tasks (Detection, Tracking, Trajectory Prediction) for Autonomous Robots under Assoc. Prof. Hamid Rezatofighi and Prof. Jianfei Cai.
+                Full scholarship from Monash University.
               </p>
 
             </li>
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">New york academy of art</h4>
+              <h4 class="h4 timeline-item-title">Master of Data Science, Monash University</h4>
 
-              <span>2006 — 2007</span>
+              <span>2020 — 2022</span>
 
               <p class="timeline-text">
-                Ratione voluptatem sequi nesciunt, facere quisquams facere menda ossimus, omnis voluptas assumenda est
-                omnis..
+                Graduated with High Distinction; WAM 82/100.
               </p>
 
             </li>
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">High school of art and design</h4>
+              <h4 class="h4 timeline-item-title">Bachelor of Business Administration, International University - VNU</h4>
 
-              <span>2002 — 2004</span>
+              <span>2016 — 2020</span>
 
               <p class="timeline-text">
-                Duis aute irure dolor in reprehenderit in voluptate, quila voluptas mag odit aut fugit, sed consequuntur
-                magni dolores
-                eos.
+                Graduated with High Distinction; 
               </p>
 
             </li>
@@ -589,42 +549,38 @@
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Creative director</h4>
+              <h4 class="h4 timeline-item-title">AI Engineer — Neuweb Technology</h4>
 
-              <span>2015 — Present</span>
+              <span>2023 — Now</span>
 
               <p class="timeline-text">
-                Nemo enim ipsam voluptatem blanditiis praesentium voluptum delenit atque corrupti, quos dolores et qvuas
-                molestias
-                exceptur.
+                Develop End-to-End AI-based solutions for Traffic Management, Parking Management, Threat Detection & Analysis, etc.
               </p>
 
             </li>
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Art director</h4>
+              <h4 class="h4 timeline-item-title">Research Assistant — Monash Medical Centre, Monash University</h4>
 
-              <span>2013 — 2015</span>
+              <span>2021 — Now</span>
 
               <p class="timeline-text">
-                Nemo enims ipsam voluptatem, blanditiis praesentium voluptum delenit atque corrupti, quos dolores et
-                quas molestias
-                exceptur.
+                Researching on attention mechanisms (multi-head attention, coordinate attention, etc.) and their application in X-ray images disease classification task. Developing a new attention-guided neural network <a href="https://www.sciencedirect.com/science/article/pii/S8756328224002047" style="display: inline;">AFFNet</a> used in detecting atypical femur fractures from X-ray images.
               </p>
 
             </li>
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Web designer</h4>
+              <h4 class="h4 timeline-item-title">Data Engineer — Datamart</h4>
 
-              <span>2010 — 2013</span>
+              <span>2018</span>
 
               <p class="timeline-text">
-                Nemo enims ipsam voluptatem, blanditiis praesentium voluptum delenit atque corrupti, quos dolores et
-                quas molestias
-                exceptur.
+                Participate in data ETL (extract-transform-load) processes.
+                Develop and maintain crawlers, parsers system which crawls data from e-commerce websites (Lazada.vn, Tiki.vn, Shopee.vn,…).
+                Research and implement data collection/management tools from various sources
               </p>
 
             </li>
@@ -635,63 +591,29 @@
 
         <section class="skill">
 
-          <h3 class="h3 skills-title">My skills</h3>
+          <h3 class="h3 skills-title">Technical Experience</h3>
 
-          <ul class="skills-list content-card">
+          <div class="skills-list content-card">
 
-            <li class="skills-item">
+            <div class="tech-category">
+              <h4 class="h4 category-title">Languages and Technologies:</h4>
+              <ul class="tech-list">
+                <li class="tech-item">
+                  <strong>Knowledgeable in:</strong> Computer Vision, Generative Model, Deep learning, 2D/3D object detection and tracking, Pytorch (proficient), Tensorflow (intermediate), Kafka, PostgreSQL, TensorRT, MySQL, Machine learning algorithms, Numpy, Pandas, PySpark.
+                </li>
+              </ul>
+            </div>
 
-              <div class="title-wrapper">
-                <h5 class="h5">Web design</h5>
-                <data value="80">80%</data>
-              </div>
+            <div class="tech-category">
+              <h4 class="h4 category-title">Programming Languages:</h4>
+              <ul class="tech-list">
+                <li class="tech-item">
+                  <strong>Python</strong> (proficient) • <strong>SQL</strong> (basic) • <strong>R</strong> (intermediate) 
+                </li>
+              </ul>
+            </div>
 
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 80%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Graphic design</h5>
-                <data value="70">70%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 70%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Branding</h5>
-                <data value="90">90%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 90%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">WordPress</h5>
-                <data value="50">50%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 50%;"></div>
-              </div>
-
-            </li>
-
-          </ul>
+          </div>
 
         </section>
 
@@ -705,10 +627,10 @@
         - #PORTFOLIO
       -->
 
-      <article class="portfolio" data-page="portfolio">
+      <article class="portfolio" data-page="researches">
 
         <header>
-          <h2 class="h2 article-title">Portfolio</h2>
+          <h2 class="h2 article-title">Researches</h2>
         </header>
 
         <section class="projects">
@@ -716,19 +638,15 @@
           <ul class="filter-list">
 
             <li class="filter-item">
-              <button class="active" data-filter-btn>All</button>
+              <button class="active" data-filter-btn data-filter-value="all">All</button>
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>Web design</button>
+              <button data-filter-btn data-filter-value="first-author">First-author</button>
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>Applications</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Web development</button>
+              <button data-filter-btn data-filter-value="collaborative">Collaborative</button>
             </li>
 
           </ul>
@@ -748,19 +666,15 @@
             <ul class="select-list">
 
               <li class="select-item">
-                <button data-select-item>All</button>
+                <button data-select-item data-filter-value="all">all</button>
               </li>
 
               <li class="select-item">
-                <button data-select-item>Web design</button>
+                <button data-select-item data-filter-value="first-author">first-author</button>
               </li>
 
               <li class="select-item">
-                <button data-select-item>Applications</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Web development</button>
+                <button data-select-item data-filter-value="collaborative">collaborative</button>
               </li>
 
             </ul>
@@ -769,165 +683,158 @@
 
           <ul class="project-list">
 
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
+            <!-- First Author Papers -->
+            <li class="project-item active" data-filter-item data-category="first-author">
+              <a href="https://arxiv.org/abs/2504.16443" target="_blank" class="research-link">
+                <div class="research-card content-card">
+                  <div class="project-img-box">
+                    <div class="project-item-icon-box">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="./assets/images/mgiou.gif" alt="MGIoU" loading="lazy">
                   </div>
 
-                  <img src="./assets/images/project-1.jpg" alt="finance" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Finance</h3>
-
-                <p class="project-category">Web development</p>
-
+                  <div class="project-content">
+                    <h3 class="h3 project-title">Marginalized Generalized IoU (MGIoU): A Unified Objective Function for Optimizing Any Convex Parametric Shapes</h3>
+                    <p class="project-text">Duy-Tho Le, Trung Pham, Jianfei Cai, Hamid Rezatofighi</p>
+                    <p class="project-text"><em>arXiv preprint arXiv:2504.16443, 2025</em></p>
+                    <a href="https://ldtho.github.io/MGIoU/" target="_blank" class="project-link" aria-label="Project Page"><ion-icon name="globe-outline"></ion-icon></a>
+                    <a href="https://github.com/ldtho/MGIoU" target="_blank" class="project-link" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    <a href="https://arxiv.org/abs/2504.16443" target="_blank" class="project-link" aria-label="arXiv"><ion-icon name="newspaper-outline"></ion-icon></a>
+                  </div>
+                </div>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
+            <li class="project-item active" data-filter-item data-category="first-author">
+              <a href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/08562.pdf" target="_blank" class="research-link">
+                <div class="research-card content-card">
+                  <div class="project-img-box">
+                    <div class="project-item-icon-box">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="./assets/images/diffuser.gif" alt="DifFUSER" loading="lazy">
                   </div>
 
-                  <img src="./assets/images/project-2.png" alt="orizon" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Orizon</h3>
-
-                <p class="project-category">Web development</p>
-
+                  <div class="project-content">
+                    <h3 class="h3 project-title">DifFUSER: Diffusion Model for Robust Multi-Sensor Fusion in 3D Object Detection and BEV Segmentation</h3>
+                    <p class="project-text">Duy-Tho Le, Hengcan Shi, Jianfei Cai, Hamid Rezatofighi</p>
+                    <p class="project-text"><em>European Conference on Computer Vision (ECCV), 2024</em></p>
+                    <a href="https://ldtho.github.io/DifFUSER/" target="_blank" class="project-link" aria-label="Project Page"><ion-icon name="globe-outline"></ion-icon></a>
+                    <a href="https://github.com/ldtho/DifFUSER" target="_blank" class="project-link" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    <a href="https://arxiv.org/abs/2404.04629" target="_blank" class="project-link" aria-label="arXiv"><ion-icon name="newspaper-outline"></ion-icon></a>
+                  </div>
+                </div>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
+            <li class="project-item active" data-filter-item data-category="first-author">
+              <a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Le_JRDB-PanoTrack_An_Open-world_Panoptic_Segmentation_and_Tracking_Robotic_Dataset_in_CVPR_2024_paper.pdf" target="_blank" class="research-link">
+                <div class="research-card content-card">
+                  <div class="project-img-box">
+                    <div class="project-item-icon-box">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="./assets/images/panotrack.gif" alt="JRDB-PanoTrack" loading="lazy">
                   </div>
 
-                  <img src="./assets/images/project-3.jpg" alt="fundo" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Fundo</h3>
-
-                <p class="project-category">Web design</p>
-
+                  <div class="project-content">
+                    <h3 class="h3 project-title">JRDB-PanoTrack: An Open-world Panoptic Segmentation and Tracking Robotic Dataset in Crowded Human Environments</h3>
+                    <p class="project-text">Duy-Tho Le, Chenhui Gou, Stavya Datta, Hengcan Shi, Ian Reid, Jianfei Cai, Hamid Rezatofighi</p>
+                    <p class="project-text"><em>IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2024</em></p>
+                    <a href="https://jrdb.erc.monash.edu/dataset/panotrack" target="_blank" class="project-link" aria-label="Project Page"><ion-icon name="globe-outline"></ion-icon></a>
+                    <a href="https://github.com/JRDB-dataset/jrdb_toolkit/tree/main/panoptic_eval" target="_blank" class="project-link" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    <a href="https://arxiv.org/abs/2404.01686" target="_blank" class="project-link" aria-label="arXiv"><ion-icon name="newspaper-outline"></ion-icon></a>
+                  </div>
+                </div>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="applications">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
+            <li class="project-item active" data-filter-item data-category="first-author">
+              <a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Vendrow_JRDB-Pose_A_Large-Scale_Dataset_for_Multi-Person_Pose_Estimation_and_Tracking_CVPR_2023_paper.pdf" target="_blank" class="research-link">
+                <div class="research-card content-card">
+                  <div class="project-img-box">
+                    <div class="project-item-icon-box">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="./assets/images/pose.gif" alt="JRDB-Pose" loading="lazy">
                   </div>
 
-                  <img src="./assets/images/project-4.png" alt="brawlhalla" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Brawlhalla</h3>
-
-                <p class="project-category">Applications</p>
-
+                  <div class="project-content">
+                    <h3 class="h3 project-title">JRDB-Pose: A Large-scale Dataset for Multi-Person Pose Estimation and Tracking</h3>
+                    <p class="project-text">Edward Vendrow*, Duy-Tho Le*, Jianfei Cai, Hamid Rezatofighi</p>
+                    <p class="project-text"><em>IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2023</em></p>
+                    <p class="project-text"><small>* Co-first authors</small></p>
+                    <a href="https://jrdb.erc.monash.edu/dataset/pose" target="_blank" class="project-link" aria-label="Project Page"><ion-icon name="globe-outline"></ion-icon></a>
+                    <a href="https://github.com/JRDB-dataset/jrdb_toolkit/" target="_blank" class="project-link" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    <a href="https://arxiv.org/abs/2210.11940" target="_blank" class="project-link" aria-label="arXiv"><ion-icon name="newspaper-outline"></ion-icon></a>
+                  </div>
+                </div>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
+            <li class="project-item active" data-filter-item data-category="first-author">
+              <a href="https://ieeexplore.ieee.org/abstract/document/10003992" target="_blank" class="research-link">
+                <div class="research-card content-card">
+                  <div class="project-img-box">
+                    <div class="project-item-icon-box">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="./assets/images/pifenet.png" alt="Pedestrian Detection" loading="lazy">
                   </div>
 
-                  <img src="./assets/images/project-5.png" alt="dsm." loading="lazy">
-                </figure>
-
-                <h3 class="project-title">DSM.</h3>
-
-                <p class="project-category">Web design</p>
-
+                  <div class="project-content">
+                    <h3 class="h3 project-title">Accurate and Real-time 3D Pedestrian Detection Using an Efficient Attentive Pillar Network</h3>
+                    <p class="project-text">Duy-Tho Le, Hengcan Shi, Hamid Rezatofighi, Jianfei Cai</p>
+                    <p class="project-text"><em>IEEE Robotics and Automation Letters (RA-L), 2023</em></p>
+                    <a href="https://github.com/ldtho/PiFeNet" target="_blank" class="project-link" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    <a href="https://arxiv.org/abs/2112.15458" target="_blank" class="project-link" aria-label="arXiv"><ion-icon name="newspaper-outline"></ion-icon></a>
+                  </div>
+                </div>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
 
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
+            <!-- Collaborative Papers -->
+            <li class="project-item active" data-filter-item data-category="collaborative">
+              <a href="https://dl.acm.org/doi/pdf/10.1145/3610978.3640648" target="_blank" class="research-link">
+                <div class="research-card content-card">
+                  <div class="project-img-box">
+                    <div class="project-item-icon-box">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="./assets/images/pepper.png" alt="Visual Perception" loading="lazy">
                   </div>
 
-                  <img src="./assets/images/project-6.png" alt="metaspark" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">MetaSpark</h3>
-
-                <p class="project-category">Web design</p>
-
+                  <div class="project-content">
+                    <h3 class="h3 project-title">Improving Visual Perception of a Social Robot for Controlled and In-the-wild Human-robot Interaction</h3>
+                    <p class="project-text">Wangjie Zhong, Leimin Tian, Duy-Tho Le, Hamid Rezatofighi</p>
+                    <p class="project-text"><em>ACM/IEEE International Conference on Human-Robot Interaction (HRI), 2024</em></p>
+                    <a href="https://arxiv.org/abs/2403.01766" target="_blank" class="project-link" aria-label="arXiv"><ion-icon name="newspaper-outline"></ion-icon></a>
+                  </div>
+                </div>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
+            <li class="project-item active" data-filter-item data-category="collaborative">
+              <a href="https://arxiv.org/abs/2311.02736" target="_blank" class="research-link">
+                <div class="research-card content-card">
+                  <div class="project-img-box">
+                    <div class="project-item-icon-box">
+                      <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="./assets/images/traj.gif" alt="JRDB-Traj" loading="lazy">
                   </div>
 
-                  <img src="./assets/images/project-7.png" alt="summary" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Summary</h3>
-
-                <p class="project-category">Web development</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="applications">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
+                  <div class="project-content">
+                    <h3 class="h3 project-title">JRDB-Traj: A Dataset and Benchmark for Trajectory Forecasting in Crowds</h3>
+                    <p class="project-text">Saeed Saadatnejad, Yang Gao, Hamid Rezatofighi, Alexandre Alahi</p>
+                    <p class="project-text"><em>arXiv preprint, 2023</em></p>
+                    <a href="https://jrdb.erc.monash.edu/workshops/iccv2023" target="_blank" class="project-link" aria-label="Project Page"><ion-icon name="globe-outline"></ion-icon></a>
+                    <a href="https://github.com/vita-epfl/JRDB-Traj" target="_blank" class="project-link" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    <a href="https://arxiv.org/abs/2311.02736" target="_blank" class="project-link" aria-label="arXiv"><ion-icon name="newspaper-outline"></ion-icon></a>
                   </div>
-
-                  <img src="./assets/images/project-8.jpg" alt="task manager" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Task Manager</h3>
-
-                <p class="project-category">Applications</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-9.png" alt="arrival" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Arrival</h3>
-
-                <p class="project-category">Web development</p>
-
+                </div>
               </a>
             </li>
 
@@ -942,235 +849,79 @@
 
 
       <!--
-        - #BLOG
+        - #PROJECTS
       -->
 
-      <article class="blog" data-page="blog">
+      <article class="projects-section" data-page="projects">
 
         <header>
-          <h2 class="h2 article-title">Blog</h2>
+          <h2 class="h2 article-title">Side Projects</h2>
         </header>
 
-        <section class="blog-posts">
-
-          <ul class="blog-posts-list">
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-1.jpg" alt="Design conferences in 2022" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Design conferences in 2022</h3>
-
-                  <p class="blog-text">
-                    Veritatis et quasi architecto beatae vitae dicta sunt, explicabo.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-2.jpg" alt="Best fonts every designer" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Best fonts every designer</h3>
-
-                  <p class="blog-text">
-                    Sed ut perspiciatis, nam libero tempore, cum soluta nobis est eligendi.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-3.jpg" alt="Design digest #80" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Design digest #80</h3>
-
-                  <p class="blog-text">
-                    Excepteur sint occaecat cupidatat no proident, quis nostrum exercitationem ullam corporis suscipit.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-4.jpg" alt="UI interactions of the week" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">UI interactions of the week</h3>
-
-                  <p class="blog-text">
-                    Enim ad minim veniam, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-5.jpg" alt="The forgotten art of spacing" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">The forgotten art of spacing</h3>
-
-                  <p class="blog-text">
-                    Maxime placeat, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-6.jpg" alt="Design digest #79" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Design digest #79</h3>
-
-                  <p class="blog-text">
-                    Optio cumque nihil impedit uo minus quod maxime placeat, velit esse cillum.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-          </ul>
-
-        </section>
-
-      </article>
-
-
-
-
-
-      <!--
-        - #CONTACT
-      -->
-
-      <article class="contact" data-page="contact">
-
-        <header>
-          <h2 class="h2 article-title">Contact</h2>
-        </header>
-
-        <section class="mapbox" data-mapbox>
-          <figure>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d199666.5651251294!2d-121.58334177520186!3d38.56165006739519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ac672b28397f9%3A0x921f6aaa74197fdb!2sSacramento%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1647608789441!5m2!1sen!2sbd"
-              width="400" height="300" loading="lazy"></iframe>
-          </figure>
-        </section>
-
-        <section class="contact-form">
-
-          <h3 class="h3 form-title">Contact Form</h3>
-
-          <form action="#" class="form" data-form>
-
-            <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+        <section class="project-showcase">
+
+          <div class="project-item content-card">
+            <div class="project-img-box">
+              <video autoplay muted loop>
+                <source src="./assets/images/pepper.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <button class="fullscreen-btn" onclick="openFullscreen(this.previousElementSibling)" aria-label="View Fullscreen">
+                <ion-icon name="expand-outline"></ion-icon>
+              </button>
             </div>
 
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+            <div class="project-content">
+              <h3 class="h3 project-title">Humanoid Robot "Pepper" - Social Interaction System</h3>
+              <p class="project-text">
+                Supervised undergraduate IT students to develop Pepper's capabilities for seeing, talking, and interacting with people. 
+                Implemented computer vision algorithms for face detection and recognition, natural language processing for conversations, 
+                and gesture recognition to enable meaningful human-robot interactions in social environments.
+              </p>
+            </div>
+          </div>
 
-            <button class="form-btn" type="submit" disabled data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
+          <div class="project-item content-card">
+            <div class="project-img-box">
+              <video autoplay muted loop>
+                <source src="./assets/images/mms.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <button class="fullscreen-btn" onclick="openFullscreen(this.previousElementSibling)" aria-label="View Fullscreen">
+                <ion-icon name="expand-outline"></ion-icon>
+              </button>
+            </div>
 
-          </form>
+            <div class="project-content">
+              <h3 class="h3 project-title">Self-Racing Formula 1 Car - Monash Motorsport</h3>
+              <p class="project-text">
+                Developed LiDAR-based object detection and 3D racing map generation for autonomous Formula 1 racing. 
+                Implemented real-time perception algorithms that enable the car to navigate racing circuits autonomously, 
+                detecting track boundaries, obstacles, and optimal racing lines for competitive autonomous racing.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-item content-card">
+            <div class="project-img-box">
+              <video autoplay muted loop>
+                <source src="./assets/images/neuweb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <button class="fullscreen-btn" onclick="openFullscreen(this.previousElementSibling)" aria-label="View Fullscreen">
+                <ion-icon name="expand-outline"></ion-icon>
+              </button>
+            </div>
+
+            <div class="project-content">
+              <h3 class="h3 project-title">Smart Camera Surveillance System</h3>
+              <p class="project-text">
+                End-to-end development of an intelligent surveillance system from concept to product. Features include 
+                car accident detection, parking management, threat detection, and fire detection using advanced computer vision 
+                and deep learning algorithms. Deployed in real-world environments for enhanced security and safety monitoring.
+              </p>
+            </div>
+          </div>
 
         </section>
 
