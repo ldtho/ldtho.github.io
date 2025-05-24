@@ -440,11 +440,22 @@ main {
 
 .social-item .social-link {
   color: var(--light-gray-70);
-  font-size: 18px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.social-item .social-link img {
+  width: 30px;
+  height: 30px;
+  opacity: 0.8;
+  transition: var(--transition-1);
+}
 
-.social-item .social-link:hover { color: var(--light-gray); }
+.social-item .social-link:hover img {
+  opacity: 1;
+}
 
 
 
@@ -1926,24 +1937,25 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 }
 
-/* Citation counter styling */
-.citation-counter {
+/* Google Scholar button styling */
+.scholar-btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
   margin-left: 15px;
   color: var(--orange-yellow-crayola);
-  font-size: var(--fs-7);
-  font-weight: var(--fw-400);
   background: var(--border-gradient-onyx);
-  padding: 6px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--orange-yellow-crayola);
+  border: 2px solid var(--orange-yellow-crayola);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: var(--transition-1);
   position: relative;
   z-index: 1;
 }
 
-.citation-counter::before {
+.scholar-btn::before {
   content: "";
   position: absolute;
   inset: 1px;
@@ -1952,24 +1964,20 @@ textarea.form-input::-webkit-resizer { display: none; }
   z-index: -1;
 }
 
-.citation-counter ion-icon {
-  font-size: 14px;
-  color: var(--orange-yellow-crayola);
+.scholar-btn:hover {
+  background: var(--orange-yellow-crayola);
+  color: var(--smoky-black);
 }
 
-.citation-counter #citationCount {
-  font-weight: var(--fw-500);
-  color: var(--white-2);
+.scholar-btn ion-icon {
+  font-size: 18px;
 }
 
-/* Responsive styling for citation counter */
+/* Responsive styling for scholar button */
 @media (max-width: 768px) {
-  .citation-counter {
-    display: block;
+  .scholar-btn {
     margin-left: 0;
     margin-top: 10px;
-    width: fit-content;
-    font-size: var(--fs-8);
   }
   
   .article-title {
@@ -1980,8 +1988,12 @@ textarea.form-input::-webkit-resizer { display: none; }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  .citation-counter {
-    font-size: var(--fs-8);
-    padding: 5px 10px;
+  .scholar-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .scholar-btn ion-icon {
+    font-size: 16px;
   }
 }
