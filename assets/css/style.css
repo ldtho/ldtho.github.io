@@ -1925,3 +1925,63 @@ textarea.form-input::-webkit-resizer { display: none; }
     aspect-ratio: 16/9;
   }
 }
+
+/* Citation counter styling */
+.citation-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 15px;
+  color: var(--orange-yellow-crayola);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-400);
+  background: var(--border-gradient-onyx);
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--orange-yellow-crayola);
+  position: relative;
+  z-index: 1;
+}
+
+.citation-counter::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--eerie-black-1);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.citation-counter ion-icon {
+  font-size: 14px;
+  color: var(--orange-yellow-crayola);
+}
+
+.citation-counter #citationCount {
+  font-weight: var(--fw-500);
+  color: var(--white-2);
+}
+
+/* Responsive styling for citation counter */
+@media (max-width: 768px) {
+  .citation-counter {
+    display: block;
+    margin-left: 0;
+    margin-top: 10px;
+    width: fit-content;
+    font-size: var(--fs-8);
+  }
+  
+  .article-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .citation-counter {
+    font-size: var(--fs-8);
+    padding: 5px 10px;
+  }
+}

@@ -154,3 +154,289 @@ function openFullscreen(video) {
   // Play video when entering fullscreen
   video.play();
 }
+
+// Citation counter functionality
+function fetchCitationCount() {
+  const citationCountElement = document.getElementById('citationCount');
+  const citationCounter = document.getElementById('citationCounter');
+  
+  // Check if we have a cached citation count
+  const cachedData = getCachedCitationData();
+  if (cachedData && cachedData.count) {
+    // Use cached data if it's less than 24 hours old
+    citationCountElement.textContent = formatCitationCount(cachedData.count);
+    citationCounter.style.display = 'inline-flex';
+    console.log('Using cached citation count:', cachedData.count);
+    return;
+  }
+  
+  // Show loading state
+  citationCountElement.textContent = 'Loading...';
+  citationCounter.style.display = 'inline-flex';
+  
+  const scholarUrl = 'https://scholar.google.com/citations?user=ufvAmAIAAAAJ&hl=en';
+  
+  // Try multiple approaches to get citation count
+  tryJSONPFetch()
+    .then(success => {
+      if (!success) {
+        return trySimpleProxy();
+      }
+      return true;
+    })
+    .then(success => {
+      if (!success) {
+        return tryAlternativeProxy();
+      }
+      return true;
+    })
+    .then(success => {
+      if (!success) {
+        // If all methods fail, hide the citation counter
+        hideCitationCounter();
+      }
+    })
+    .catch(error => {
+      console.log('All citation fetch methods failed:', error);
+      hideCitationCounter();
+    });
+}
+
+// Cache management functions
+function getCachedCitationData() {
+  try {
+    const cached = localStorage.getItem('scholar_citation_data');
+    if (cached) {
+      const data = JSON.parse(cached);
+      const now = new Date().getTime();
+      const cacheAge = now - data.timestamp;
+      const oneDay = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+      
+      if (cacheAge < oneDay) {
+        return data;
+      } else {
+        // Cache expired, remove it
+        localStorage.removeItem('scholar_citation_data');
+      }
+    }
+  } catch (error) {
+    console.log('Error reading cached citation data:', error);
+    localStorage.removeItem('scholar_citation_data');
+  }
+  return null;
+}
+
+function setCachedCitationData(count) {
+  try {
+    const data = {
+      count: count,
+      timestamp: new Date().getTime()
+    };
+    localStorage.setItem('scholar_citation_data', JSON.stringify(data));
+    console.log('Citation count cached:', count);
+  } catch (error) {
+    console.log('Error caching citation data:', error);
+  }
+}
+
+function hideCitationCounter() {
+  const citationCounter = document.getElementById('citationCounter');
+  if (citationCounter) {
+    citationCounter.style.display = 'none';
+    console.log('Citation counter hidden due to fetch failure');
+  }
+}
+
+// Method 1: Try JSONP approach
+function tryJSONPFetch() {
+  return new Promise((resolve) => {
+    // This method typically doesn't work for Google Scholar but let's try a simple fetch first
+    const citationCountElement = document.getElementById('citationCount');
+    
+    // Try a direct approach with no-cors mode (will be limited but might work)
+    fetch('https://scholar.google.com/citations?user=ufvAmAIAAAAJ&hl=en', {
+      mode: 'no-cors',
+      method: 'GET'
+    })
+    .then(() => {
+      // no-cors won't give us the content, so this won't work for parsing
+      resolve(false);
+    })
+    .catch(() => {
+      resolve(false);
+    });
+  });
+}
+
+// Method 2: Try a simpler proxy
+function trySimpleProxy() {
+  return new Promise((resolve) => {
+    const citationCountElement = document.getElementById('citationCount');
+    const scholarUrl = 'https://scholar.google.com/citations?user=ufvAmAIAAAAJ&hl=en';
+    
+    // Try with a different proxy service
+    const proxyUrl = `https://cors-anywhere.herokuapp.com/${scholarUrl}`;
+    
+    fetch(proxyUrl, {
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .then(html => {
+      const citationCount = parseCitationFromHTML(html);
+      if (citationCount) {
+        citationCountElement.textContent = formatCitationCount(citationCount);
+        setCachedCitationData(citationCount); // Cache the successful result
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    })
+    .catch(error => {
+      console.log('Simple proxy fetch failed:', error);
+      resolve(false);
+    });
+  });
+}
+
+// Method 3: Try alternative proxy
+function tryAlternativeProxy() {
+  return new Promise((resolve) => {
+    const citationCountElement = document.getElementById('citationCount');
+    const scholarUrl = 'https://scholar.google.com/citations?user=ufvAmAIAAAAJ&hl=en';
+    
+    // Try with thingproxy
+    const proxyUrl = `https://thingproxy.freeboard.io/fetch/${scholarUrl}`;
+    
+    fetch(proxyUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .then(html => {
+      const citationCount = parseCitationFromHTML(html);
+      if (citationCount) {
+        citationCountElement.textContent = formatCitationCount(citationCount);
+        setCachedCitationData(citationCount); // Cache the successful result
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    })
+    .catch(error => {
+      console.log('Alternative proxy fetch failed:', error);
+      resolve(false);
+    });
+  });
+}
+
+// Parse citation count from HTML
+function parseCitationFromHTML(html) {
+  try {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    
+    // Look for citation count in Google Scholar page
+    // Google Scholar typically shows citations in a table with specific selectors
+    let citationElements = doc.querySelectorAll('#gsc_rsb_st .gsc_rsb_std');
+    
+    if (citationElements && citationElements.length > 0) {
+      const citationText = citationElements[0].textContent.trim();
+      const citationCount = parseInt(citationText.replace(/,/g, ''));
+      if (!isNaN(citationCount)) {
+        return citationCount;
+      }
+    }
+    
+    // Try alternative selectors
+    citationElements = doc.querySelectorAll('.gsc_rsb_std');
+    if (citationElements && citationElements.length > 0) {
+      const citationText = citationElements[0].textContent.trim();
+      const citationCount = parseInt(citationText.replace(/,/g, ''));
+      if (!isNaN(citationCount)) {
+        return citationCount;
+      }
+    }
+    
+    // Try to find citation count using regex
+    const citationMatch = html.match(/Citations<\/td><td class="gsc_rsb_std">(\d+(?:,\d+)*)<\/td>/);
+    if (citationMatch) {
+      const citationCount = parseInt(citationMatch[1].replace(/,/g, ''));
+      if (!isNaN(citationCount)) {
+        return citationCount;
+      }
+    }
+    
+    return null;
+  } catch (error) {
+    console.log('Error parsing HTML:', error);
+    return null;
+  }
+}
+
+// Fallback method using a different proxy
+function fallbackCitationFetch() {
+  // This function is now integrated into the main flow
+  hideCitationCounter();
+}
+
+// Show manual update option when automatic fetching fails
+function showManualCitationUpdate() {
+  // This function is replaced by hideCitationCounter()
+  hideCitationCounter();
+}
+
+// Format citation count with proper number formatting
+function formatCitationCount(count) {
+  if (count >= 1000) {
+    return (count / 1000).toFixed(1) + 'k';
+  }
+  return count.toString();
+}
+
+// Initialize citation counter when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  // Add a small delay to ensure the page is fully loaded, but only fetch once
+  setTimeout(() => {
+    // Only fetch if we're on the researches page or if we don't have cached data
+    const cachedData = getCachedCitationData();
+    if (!cachedData) {
+      fetchCitationCount();
+    } else {
+      // Show cached data immediately
+      const citationCountElement = document.getElementById('citationCount');
+      const citationCounter = document.getElementById('citationCounter');
+      if (citationCountElement && citationCounter) {
+        citationCountElement.textContent = formatCitationCount(cachedData.count);
+        citationCounter.style.display = 'inline-flex';
+      }
+    }
+  }, 1000);
+});
+
+// Don't refetch when navigating to researches page if we have cached data
+document.addEventListener('click', function(e) {
+  if (e.target.matches('[data-nav-link]') && e.target.textContent.toLowerCase() === 'researches') {
+    const cachedData = getCachedCitationData();
+    if (cachedData) {
+      // Just show cached data, don't refetch
+      const citationCountElement = document.getElementById('citationCount');
+      const citationCounter = document.getElementById('citationCounter');
+      if (citationCountElement && citationCounter) {
+        citationCountElement.textContent = formatCitationCount(cachedData.count);
+        citationCounter.style.display = 'inline-flex';
+      }
+    } else {
+      // Only fetch if we don't have cached data
+      setTimeout(fetchCitationCount, 500);
+    }
+  }
+});
