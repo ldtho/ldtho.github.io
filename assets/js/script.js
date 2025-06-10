@@ -154,3 +154,55 @@ function openFullscreen(video) {
   // Play video when entering fullscreen
   video.play();
 }
+
+// Media loading functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Handle image loading
+  const images = document.querySelectorAll('.media-container img.loading');
+  images.forEach(img => {
+    const loadingOverlay = img.parentElement.querySelector('.loading-overlay');
+    
+    // Function to hide loading overlay
+    const hideLoading = () => {
+      img.classList.remove('loading');
+      img.style.opacity = '1';
+      if (loadingOverlay) {
+        loadingOverlay.classList.add('hidden');
+      }
+    };
+    
+    // Check if image is already loaded (cached)
+    if (img.complete) {
+      hideLoading();
+    } else {
+      // Add load event listener
+      img.addEventListener('load', hideLoading);
+      img.addEventListener('error', hideLoading); // Hide loading even on error
+    }
+  });
+  
+  // Handle video loading
+  const videos = document.querySelectorAll('.media-container video.loading');
+  videos.forEach(video => {
+    const loadingOverlay = video.parentElement.querySelector('.loading-overlay');
+    
+    // Function to hide loading overlay
+    const hideLoading = () => {
+      video.classList.remove('loading');
+      video.style.opacity = '1';
+      if (loadingOverlay) {
+        loadingOverlay.classList.add('hidden');
+      }
+    };
+    
+    // Add event listeners for video loading
+    video.addEventListener('loadeddata', hideLoading);
+    video.addEventListener('canplay', hideLoading);
+    video.addEventListener('error', hideLoading); // Hide loading even on error
+    
+    // Check if video is already loaded
+    if (video.readyState >= 2) { // HAVE_CURRENT_DATA or higher
+      hideLoading();
+    }
+  });
+});

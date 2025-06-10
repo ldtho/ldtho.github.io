@@ -222,6 +222,64 @@
       color: var(--white-2);
       font-weight: var(--fw-500);
     }
+
+    /* Loading screen styles */
+    .media-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--jet);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      transition: opacity 0.3s ease;
+    }
+
+    .loading-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--white-2);
+      border-top: 3px solid var(--orange-yellow-crayola);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      margin-top: 10px;
+      color: var(--white-2);
+      font-size: var(--fs-6);
+      text-align: center;
+    }
+
+    /* Ensure media elements are initially hidden until loaded */
+    .media-container video,
+    .media-container img {
+      transition: opacity 0.3s ease;
+    }
+
+    .media-container video.loading,
+    .media-container img.loading {
+      opacity: 0;
+    }
   </style>
 </head>
 
@@ -319,6 +377,23 @@
               <p class="contact-title">Location</p>
 
               <address>Melbourne, Australia</address>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="flag-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Citizenship</p>
+
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 25px;">🇦🇺</span>
+                <span style="font-size: 25px;">🇻🇳</span>
+              </div>
             </div>
 
           </li>
@@ -692,11 +767,17 @@
             <li class="project-item active" data-filter-item data-category="first-author">
               <a href="https://ldtho.github.io/MGIoU" target="_blank" class="research-link">
                 <div class="research-card content-card">
-                  <div class="project-img-box">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
                     <div class="project-item-icon-box">
                       <ion-icon name="eye-outline"></ion-icon>
                     </div>
-                    <img src="./assets/images/mgiou.gif" alt="MGIoU" loading="lazy">
+                    <img src="./assets/images/mgiou.gif" alt="MGIoU" loading="lazy" class="loading">
                   </div>
 
                   <div class="project-content">
@@ -714,11 +795,17 @@
             <li class="project-item active" data-filter-item data-category="first-author">
               <a href="https://ldtho.github.io/DifFUSER" target="_blank" class="research-link">
                 <div class="research-card content-card">
-                  <div class="project-img-box">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
                     <div class="project-item-icon-box">
                       <ion-icon name="eye-outline"></ion-icon>
                     </div>
-                    <img src="./assets/images/diffuser.gif" alt="DifFUSER" loading="lazy">
+                    <img src="./assets/images/diffuser.gif" alt="DifFUSER" loading="lazy" class="loading">
                   </div>
 
                   <div class="project-content">
@@ -736,11 +823,17 @@
             <li class="project-item active" data-filter-item data-category="first-author">
               <a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Le_JRDB-PanoTrack_An_Open-world_Panoptic_Segmentation_and_Tracking_Robotic_Dataset_in_CVPR_2024_paper.pdf" target="_blank" class="research-link">
                 <div class="research-card content-card">
-                  <div class="project-img-box">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
                     <div class="project-item-icon-box">
                       <ion-icon name="eye-outline"></ion-icon>
                     </div>
-                    <img src="./assets/images/panotrack.gif" alt="JRDB-PanoTrack" loading="lazy">
+                    <img src="./assets/images/panotrack.gif" alt="JRDB-PanoTrack" loading="lazy" class="loading">
                   </div>
 
                   <div class="project-content">
@@ -758,11 +851,17 @@
             <li class="project-item active" data-filter-item data-category="first-author">
               <a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Vendrow_JRDB-Pose_A_Large-Scale_Dataset_for_Multi-Person_Pose_Estimation_and_Tracking_CVPR_2023_paper.pdf" target="_blank" class="research-link">
                 <div class="research-card content-card">
-                  <div class="project-img-box">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
                     <div class="project-item-icon-box">
                       <ion-icon name="eye-outline"></ion-icon>
                     </div>
-                    <img src="./assets/images/pose.gif" alt="JRDB-Pose" loading="lazy">
+                    <img src="./assets/images/pose.gif" alt="JRDB-Pose" loading="lazy" class="loading">
                   </div>
 
                   <div class="project-content">
@@ -781,11 +880,17 @@
             <li class="project-item active" data-filter-item data-category="first-author">
               <a href="https://ieeexplore.ieee.org/abstract/document/10003992" target="_blank" class="research-link">
                 <div class="research-card content-card">
-                  <div class="project-img-box">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
                     <div class="project-item-icon-box">
                       <ion-icon name="eye-outline"></ion-icon>
                     </div>
-                    <img src="./assets/images/pifenet.png" alt="Pedestrian Detection" loading="lazy">
+                    <img src="./assets/images/pifenet.png" alt="Pedestrian Detection" loading="lazy" class="loading">
                   </div>
 
                   <div class="project-content">
@@ -805,11 +910,17 @@
             <li class="project-item active" data-filter-item data-category="collaborative">
               <a href="https://dl.acm.org/doi/pdf/10.1145/3610978.3640648" target="_blank" class="research-link">
                 <div class="research-card content-card">
-                  <div class="project-img-box">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
                     <div class="project-item-icon-box">
                       <ion-icon name="eye-outline"></ion-icon>
                     </div>
-                    <img src="./assets/images/pepper.png" alt="Visual Perception" loading="lazy">
+                    <img src="./assets/images/pepper.png" alt="Visual Perception" loading="lazy" class="loading">
                   </div>
 
                   <div class="project-content">
@@ -825,11 +936,17 @@
             <li class="project-item active" data-filter-item data-category="collaborative">
               <a href="https://arxiv.org/abs/2311.02736" target="_blank" class="research-link">
                 <div class="research-card content-card">
-                  <div class="project-img-box">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
                     <div class="project-item-icon-box">
                       <ion-icon name="eye-outline"></ion-icon>
                     </div>
-                    <img src="./assets/images/traj.gif" alt="JRDB-Traj" loading="lazy">
+                    <img src="./assets/images/traj.gif" alt="JRDB-Traj" loading="lazy" class="loading">
                   </div>
 
                   <div class="project-content">
@@ -847,11 +964,17 @@
             <li class="project-item active" data-filter-item data-category="collaborative">
               <a href="https://www.sciencedirect.com/science/article/pii/S8756328224002047" target="_blank" class="research-link">
                 <div class="research-card content-card">
-                  <div class="project-img-box">
+                  <div class="project-img-box media-container">
+                    <div class="loading-overlay">
+                      <div>
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading...</div>
+                      </div>
+                    </div>
                     <div class="project-item-icon-box">
                       <ion-icon name="eye-outline"></ion-icon>
                     </div>
-                    <img src="./assets/images/aff.png" alt="AFFnet" loading="lazy">
+                    <img src="./assets/images/aff.png" alt="AFFnet" loading="lazy" class="loading">
                   </div>
 
                   <div class="project-content">
@@ -886,8 +1009,14 @@
         <section class="project-showcase">
 
           <div class="project-item content-card">
-            <div class="project-img-box">
-              <video autoplay muted loop>
+            <div class="project-img-box media-container">
+              <div class="loading-overlay">
+                <div>
+                  <div class="loading-spinner"></div>
+                  <div class="loading-text">Loading video...</div>
+                </div>
+              </div>
+              <video autoplay muted loop class="loading">
                 <source src="./assets/images/pepper.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
@@ -907,8 +1036,14 @@
           </div>
 
           <div class="project-item content-card">
-            <div class="project-img-box">
-              <video autoplay muted loop>
+            <div class="project-img-box media-container">
+              <div class="loading-overlay">
+                <div>
+                  <div class="loading-spinner"></div>
+                  <div class="loading-text">Loading video...</div>
+                </div>
+              </div>
+              <video autoplay muted loop class="loading">
                 <source src="./assets/images/mms.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
@@ -928,8 +1063,14 @@
           </div>
 
           <div class="project-item content-card">
-            <div class="project-img-box">
-              <video autoplay muted loop>
+            <div class="project-img-box media-container">
+              <div class="loading-overlay">
+                <div>
+                  <div class="loading-spinner"></div>
+                  <div class="loading-text">Loading video...</div>
+                </div>
+              </div>
+              <video autoplay muted loop class="loading">
                 <source src="./assets/images/neuweb.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
